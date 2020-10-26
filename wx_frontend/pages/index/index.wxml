@@ -49,7 +49,7 @@
       <swiper class='recommend-swiper' circular bindchange="bindchange">
         <block wx:for="{{recommendList}}" wx:key>
           <swiper-item>
-            <image class='swiper-img' data-path="{{item.location}}" bindtap='navigatorToPhoto' src='{{item.imageURL}}'></image>
+            <image class='swiper-img' data-path="{{item.location}}" bindtap='navigatorToPhoto' src='{{item.roomPictureUrl}}'></image>
             <view class='img-title font-big'>{{item.title}}</view>
           </swiper-item>
         </block>

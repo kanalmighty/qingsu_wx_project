@@ -1,6 +1,6 @@
 var apis = {
   index_banner: '/index/banner',    //首页背景图
-  minsu_index: '/api/minsu.index/index',    //房间列表
+  index_recommend: '/index/recommend',    //今日推荐列表
   house_detail: '/api/minsu.index/detail',    //房屋详情
   create_order: '/api/minsu.order/create',   //创建订单
   order_detail: '/api/minsu.order/orderDetail',    //订单详情

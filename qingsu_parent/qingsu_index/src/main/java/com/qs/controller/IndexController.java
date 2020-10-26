@@ -34,12 +34,7 @@ public class IndexController {
     @ApiOperation("获取首页推荐列表")
     public WXResponseEntity getRecommend(){
         List<Room> roomList = indexService.getRecommendRooms();
-        ArrayList<String> roomPictureList = new ArrayList<>();
-        for (Room room : roomList) {
-            roomPictureList.add(room.getRoomPictureUrl());
-
-        }
-        return new WXResponseEntity<List<String>>(roomPictureList, 200);
+        return new WXResponseEntity<List<Room>>(roomList, 200);
     }
 
     @RequestMapping(value = "/banner",method = RequestMethod.POST)

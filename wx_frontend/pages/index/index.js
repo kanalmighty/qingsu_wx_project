@@ -40,6 +40,7 @@ Page({
     // that.get_bgImg();
     //获取首页banner
     that.getBannerList()
+    that.getRecommendList()
     var bg_date = month + '月' + date + '日';
     var end_date = utils.getDateStr(starttime, 1).slice(5, 7) + '月' + utils.getDateStr(starttime, 1).slice(8, 10) + '日';
     that.setData({
@@ -238,10 +239,25 @@ Page({
     var that = this;
     wxb.Post(wxb.api.index_banner, {}, function (data) {
       if(data.length > 0){
-        debugger;
         that.setData({
           src: data[0],
           bannerList: data,
+        });
+    
+        wx.setStorageSync("app_info", data);
+      }
+    });
+  },
+
+   //获取首页背景图
+   getRecommendList: function () {
+    var that = this;
+    wxb.Post(wxb.api.index_recommend, {}, function (data) {
+      debugger;
+      if(data.length > 0){
+        that.setData({
+          src: data[0],
+          recommendList: data,
         });
     
         wx.setStorageSync("app_info", data);

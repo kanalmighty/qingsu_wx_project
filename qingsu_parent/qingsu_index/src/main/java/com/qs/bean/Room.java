@@ -1,15 +1,22 @@
 package com.qs.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Room implements Serializable {
     private Integer roomId;
 
     private String roomPictureUrl;
 
-    private String roomName;
+    private BigDecimal price;
+
+    private String title;
 
     private Integer isRecommended;
+
+    private String location;
+
+    private Integer isAvaliable;
 
     private static final long serialVersionUID = 1L;
 
@@ -29,12 +36,20 @@ public class Room implements Serializable {
         this.roomPictureUrl = roomPictureUrl == null ? null : roomPictureUrl.trim();
     }
 
-    public String getRoomName() {
-        return roomName;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName == null ? null : roomName.trim();
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public Integer getIsRecommended() {
@@ -43,5 +58,21 @@ public class Room implements Serializable {
 
     public void setIsRecommended(Integer isRecommended) {
         this.isRecommended = isRecommended;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location == null ? null : location.trim();
+    }
+
+    public Integer getIsAvaliable() {
+        return isAvaliable;
+    }
+
+    public void setIsAvaliable(Integer isAvaliable) {
+        this.isAvaliable = isAvaliable;
     }
 }

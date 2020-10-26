@@ -1,1 +1,79 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.qs.mapper.RoomMapper">    <resultMap id="BaseResultMap" type="com.qs.bean.Room">        <result column="room_id" jdbcType="INTEGER" property="roomId" />        <result column="room_picture_url" jdbcType="VARCHAR" property="roomPictureUrl" />        <result column="room_name" jdbcType="VARCHAR" property="roomName" />        <result column="is_recommended" jdbcType="INTEGER" property="isRecommended" />    </resultMap>    <sql id="Base_Column_List">    room_id, room_picture_url,room_name,is_recommended  </sql>    <select id="selectRecommendRoomList" resultMap="BaseResultMap">        select        <include refid="Base_Column_List" />        from qs_room        where is_recommended = 1    </select>    <insert id="insert" parameterType="com.qs.bean.Room">    insert into qs_room (room_id, room_picture_url, room_name,       is_recommended)    values (#{roomId,jdbcType=INTEGER}, #{roomPictureUrl,jdbcType=VARCHAR}, #{roomName,jdbcType=VARCHAR},       #{isRecommended,jdbcType=INTEGER})  </insert>    <insert id="insertSelective" parameterType="com.qs.bean.Room">        insert into qs_room        <trim prefix="(" suffix=")" suffixOverrides=",">            <if test="roomId != null">                room_id,            </if>            <if test="roomPictureUrl != null">                room_picture_url,            </if>            <if test="roomName != null">                room_name,            </if>            <if test="isRecommended != null">                is_recommended,            </if>        </trim>        <trim prefix="values (" suffix=")" suffixOverrides=",">            <if test="roomId != null">                #{roomId,jdbcType=INTEGER},            </if>            <if test="roomPictureUrl != null">                #{roomPictureUrl,jdbcType=VARCHAR},            </if>            <if test="roomName != null">                #{roomName,jdbcType=VARCHAR},            </if>            <if test="isRecommended != null">                #{isRecommended,jdbcType=INTEGER},            </if>        </trim>    </insert></mapper>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.mapper.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.qs.bean.Room">
+    <result column="room_id" jdbcType="INTEGER" property="roomId" />
+    <result column="room_picture_url" jdbcType="VARCHAR" property="roomPictureUrl" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="is_recommended" jdbcType="INTEGER" property="isRecommended" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="is_avaliable" jdbcType="INTEGER" property="isAvaliable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    room_id, room_picture_url,title,is_recommended,price,location,is_avaliable
+  </sql>
+  <select id="selectRecommendRoomList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qs_room
+    where is_recommended = 1
+  </select>
+  <insert id="insert" parameterType="com.qs.bean.Room">
+    insert into qs_room (room_id, room_picture_url, price, 
+      title, is_recommended, location, 
+      is_avaliable)
+    values (#{roomId,jdbcType=INTEGER}, #{roomPictureUrl,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{title,jdbcType=VARCHAR}, #{isRecommended,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
+      #{isAvaliable,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.bean.Room">
+    insert into qs_room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="roomPictureUrl != null">
+        room_picture_url,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="isRecommended != null">
+        is_recommended,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="isAvaliable != null">
+        is_avaliable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="roomPictureUrl != null">
+        #{roomPictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommended != null">
+        #{isRecommended,jdbcType=INTEGER},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="isAvaliable != null">
+        #{isAvaliable,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

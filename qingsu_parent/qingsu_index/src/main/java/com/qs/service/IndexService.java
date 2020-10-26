@@ -12,4 +12,5 @@ public interface IndexService {
 
     public List<Banner> getIndexBanner();
 
+
 }
