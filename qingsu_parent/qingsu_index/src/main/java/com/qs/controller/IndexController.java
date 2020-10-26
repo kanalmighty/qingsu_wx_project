@@ -2,6 +2,7 @@ package com.qs.controller;
 
 import com.qs.bean.Banner;
 import com.qs.bean.Recommend;
+import com.qs.bean.Room;
 import com.qs.bean.WXResponseEntity;
 import com.qs.service.IndexService;
 import io.swagger.annotations.Api;
@@ -31,10 +32,14 @@ public class IndexController {
 
     @RequestMapping(value = "/recommend",method = RequestMethod.POST)
     @ApiOperation("获取首页推荐列表")
-    public ResponseEntity getRecommend(){
-        List<Recommend> recommends = indexService.getIndexRecommends();
+    public WXResponseEntity getRecommend(){
+        List<Room> roomList = indexService.getRecommendRooms();
+        ArrayList<String> roomPictureList = new ArrayList<>();
+        for (Room room : roomList) {
+            roomPictureList.add(room.getRoomPictureUrl());
 
-        return new ResponseEntity<>(recommends, HttpStatus.OK);
+        }
+        return new WXResponseEntity<List<String>>(roomPictureList, 200);
     }
 
     @RequestMapping(value = "/banner",method = RequestMethod.POST)
