@@ -17,11 +17,17 @@
             </view>
             <view  class="number_title">
               <block wx:for="{{itm.day}}" wx:key="date_{{item.dayIndex}}">
-                <view data-type="{{item.type}}"  data-in="{{item.dayIndex}}" bindtap="dayClick" class="day {{item.type==0?'disabled':''}}  {{item.select==1?'ruzhu':''}} {{item.select==2?'lidian':''}} {{item.select==3?'select':''}}">
+                <view data-type="{{item.type}}"  data-in="{{item.dayIndex}}" bindtap="dayClick" class="day {{item.type==0?'disabled':''}} {{item.select==3?'select':''}}">
+                <!-- <view data-type="{{item.type}}"  data-in="{{item.dayIndex}}" bindtap="dayClick" class="day {{item.type==0?'disabled':''}}  {{item.select==1?'ruzhu':''}} {{item.select==2?'lidian':''}} {{item.select==3?'select':''}}"></view> -->
                 <view  data-type="{{item.type}}" data-in="{{item.dayIndex}}"   wx:if="{{item.day2==0}}" class="text" ></view>
-                <view  data-type="{{item.type}}" data-in="{{item.dayIndex}}"  wx:if="{{item.day2>0 && item.select==1}}" class="text line44">{{item.day2}}<view  data-in="{{item.dayIndex}}"  class="p">入住</view></view>
-                <view hidden='{{item.already}}' data-type="{{item.type}}"  data-in="{{item.dayIndex}}" wx:if="{{item.day2>0 && (item.select==0||item.select==3)}}" class="text {{item.today==1 ? 'line44':'line88'}}">{{item.day2}}<view   data-in="{{item.dayIndex}}"  wx:if="{{item.today==1}}" class="p">今天</view></view>
-                <view data-type="{{item.type}}"  data-in="{{item.dayIndex}}" wx:if="{{item.day2>0 && item.select==2}}"  class="text line44">{{item.day2}}<view   data-in="{{item.dayIndex}}"  class="p">离店</view></view>
+                <!-- <view  data-type="{{item.type}}" data-in="{{item.dayIndex}}"  wx:if="{{item.day2>0 && item.select==1}}" class="text line44">{{item.day2}}
+                    <view  data-in="{{item.dayIndex}}"  class="p">入住</view>
+                </view> -->
+                <view hidden='{{item.already}}' data-type="{{item.type}}"  data-in="{{item.dayIndex}}" wx:if="{{item.day2>0}}" class="text {{item.today==1 ? 'line44':'line88'}}">{{item.day2}}<view   data-in="{{item.dayIndex}}"  wx:if="{{item.today==1}}" class="p">今天</view></view>
+                <!-- <view hidden='{{item.already}}' data-type="{{item.type}}"  data-in="{{item.dayIndex}}" wx:if="{{item.day2>0 && (item.select==0||item.select==3)}}" class="text {{item.today==1 ? 'line44':'line88'}}">{{item.day2}}<view   data-in="{{item.dayIndex}}"  wx:if="{{item.today==1}}" class="p">今天</view></view> -->
+                <!-- <view data-type="{{item.type}}"  data-in="{{item.dayIndex}}" wx:if="{{item.day2>0 && item.select==2}}"  class="text line44">{{item.day2}}
+                    <view   data-in="{{item.dayIndex}}"  class="p">离店</view>
+                </view> -->
                 <view data-type="{{item.type}}"  data-in="{{item.dayIndex}}" wx:if="{{item.already}}"  class="text line44">{{item.day2}}<view   data-in="{{item.dayIndex}}"  class="p" hidden='{{item.select==2}}'>无房</view></view>
                 <view  data-type="{{item.type}}" data-in="{{item.dayIndex}}"  class="yuan"></view>
                 <view  data-type="{{item.type}}" data-in="{{item.dayIndex}}"  wx:if="{{bg_date && end_date}}" class="{{item.select==3&&item.type==0?'':'right'}}"></view>

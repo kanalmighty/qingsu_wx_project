@@ -122,7 +122,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wxb.Post(wxb.api.order_detail, { order_id: options.id, openid: JSON.parse(wx.getStorageSync("userinfo")).open_id}, function(data){
+    wxb.Post(wxb.api.order_detail, { order_id: options.id, openid: JSON.parse(wx.getStorageSync("userinfo")).openId}, function(data){
       if(data){
         that.setData({
           order: data

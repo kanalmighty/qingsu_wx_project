@@ -36,22 +36,19 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.2.2",
-  "appid": "wxcba94e8d20d462fa",
+  "appid": "wxa63e799ea4dae996",
   "projectname": "%E6%99%B4%E5%AE%BF",
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
@@ -59,7 +56,6 @@
       "list": []
     },
     "miniprogram": {
-      "current": 7,
       "list": [
         {
           "id": -1,

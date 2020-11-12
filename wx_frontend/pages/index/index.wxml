@@ -22,21 +22,36 @@
     </view>
     <view class='search-date'>
       <navigator url='../../common/calendar/calendar?bg_date={{bg_date}}&end_date={{end_date}}' hover-class='none'>
-        <zan-row>
+        <!-- <zan-row>
           <zan-col col="9" col-class="custom-zan-col"><view class='bg_date'>{{bg_date}}<text class='font-small'>入住</text></view></zan-col>
           <zan-col col="6" col-class="custom-zan-col"><view class='total font-small'>共{{days}}晚</view></zan-col>
           <zan-col col="9" col-class="custom-zan-col"><view class='end_date'>{{end_date}}<text class='font-small'>离店</text></view></zan-col>
-        </zan-row>
+        </zan-row> -->
+        <!-- <zan-row> -->
+          <view class='total font-big'>浦江的故事</view>
+        <!-- </zan-row> -->
       </navigator>
     </view>
-    <view class='search-num'>
+    <view class='search-date'>
+      <navigator url='../../common/calendar/calendar?bg_date={{bg_date}}&end_date={{end_date}}' hover-class='none'>
+        <!-- <zan-row>
+          <zan-col col="9" col-class="custom-zan-col"><view class='bg_date'>{{bg_date}}<text class='font-small'>入住</text></view></zan-col>
+          <zan-col col="6" col-class="custom-zan-col"><view class='total font-small'>共{{days}}晚</view></zan-col>
+          <zan-col col="9" col-class="custom-zan-col"><view class='end_date'>{{end_date}}<text class='font-small'>离店</text></view></zan-col>
+        </zan-row> -->
+        <!-- <zan-row> -->
+          <view class='total font-big'>中央畈村的故事</view>
+        <!-- </zan-row> -->
+      </navigator>
+    </view>
+    <!-- <view class='search-num'>
       <navigator url='selectNum/selectNum?num={{peopleNum}}' hover-class='none'>
         <zan-row>
           <zan-col col="22" col-class="custom-zan-col"><view class='num1 font-big'>{{peopleNum}}</view></zan-col>
           <zan-col col="2" col-class="custom-zan-col"><view class='num2'><text class='daoke-icon icon-zhixiang'></text></view></zan-col>
         </zan-row>
       </navigator>
-    </view>
+    </view> -->
     <view class='search-btn font-big' hover-class='btn-click' bindtap='search'>查找美屋</view>
   </view>
   <!-- 今日推荐 -->
@@ -58,7 +73,7 @@
   </view>
   <!-- 底部活动 -->
   <view class='activity'>
-    <view class='activity-items' bindtap='toActivity' hover-class='btn-click-242' >
+    <!-- <view class='activity-items' bindtap='toActivity' hover-class='btn-click-242' >
       <view class='item-top font-big'>民宿免费住</view>
       <view class='item-bottom font-small color-85'>百分百有奖</view>
     </view>
@@ -69,6 +84,6 @@
     <view class='activity-items' bindtap='toActivity' hover-class='btn-click-242'>
       <view class='item-top font-big'>超能大礼包</view>
       <view class='item-bottom font-small color-85'>￥250人人领</view>
-    </view>
+    </view> -->
   </view>
 </view>

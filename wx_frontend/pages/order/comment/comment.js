@@ -54,7 +54,7 @@ Page({
     });
     wxb.Post(wxb.api.comment, {
       order_id: that.data.id,
-      openid: JSON.parse(wx.getStorageSync("userinfo")).open_id,
+      openid: JSON.parse(wx.getStorageSync("userinfo")).openId,
       content: params.content,
       photo: that.data.photos,
       health: grade[that.data.list[0].grade_index],

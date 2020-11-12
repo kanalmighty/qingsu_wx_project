@@ -1,2 +1,2 @@
-/qingsu_parent/qingsu_index/target/
-qingsu_parent/qingsu_index/src/main/resources/generatorConfig.xml
+/qingsu_parent/qingsu_index/target/*
+/qingsu_parent/qingsu_index/src/main/resources/generatorConfig.xml

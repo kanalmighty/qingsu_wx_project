@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.mapper.RoomBookInfoMapper">
+  <resultMap id="BaseResultMap" type="com.qs.bean.RoomBookInfo">
+    <id column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="room_id" jdbcType="INTEGER" property="roomId" />
+    <result column="book_date" jdbcType="VARCHAR" property="bookDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    book_id, room_id, book_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from qs_room_bookinfo
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByRoomId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qs_room_bookinfo
+    where room_id = #{roomId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from qs_room_bookinfo
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.bean.RoomBookInfo">
+    insert into qs_room_bookinfo (book_id, room_id, book_date
+      )
+    values (#{bookId,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{bookDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.bean.RoomBookInfo">
+    insert into qs_room_bookinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="bookDate != null">
+        book_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="bookDate != null">
+        #{bookDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.bean.RoomBookInfo">
+    update qs_room_bookinfo
+    <set>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="bookDate != null">
+        book_date = #{bookDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.bean.RoomBookInfo">
+    update qs_room_bookinfo
+    set room_id = #{roomId,jdbcType=INTEGER},
+      book_date = #{bookDate,jdbcType=VARCHAR}
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+</mapper>

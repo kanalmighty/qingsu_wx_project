@@ -1,7 +1,9 @@
 var apis = {
   index_banner: '/index/banner',    //首页背景图
   index_recommend: '/index/recommend',    //今日推荐列表
-  house_detail: '/api/minsu.index/detail',    //房屋详情
+  wechat_auth: '/login/wechatauth',    //微信授权登录
+  house_list: '/room/avalrooms',    //有空的房间列表
+  house_detail: '/room/roominfo',    //房屋详情
   create_order: '/api/minsu.order/create',   //创建订单
   order_detail: '/api/minsu.order/orderDetail',    //订单详情
   order_list: '/api/minsu.order/geTorder',    //订单列表

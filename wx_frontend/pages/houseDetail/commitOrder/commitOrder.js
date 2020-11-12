@@ -114,7 +114,7 @@ Page({
       roomCount: that.data.stepper["stepper"],
       peopleCount: that.data.stepper2["stepper"],
       insurance: that.data.baoxian == '未使用' ? 0 : 1,
-      openid: JSON.parse(wx.getStorageSync("userinfo")).open_id,
+      openid: JSON.parse(wx.getStorageSync("userinfo")).openId,
       formId: e.detail.formId
     }
     if (that.data.baoxian == '已使用') {

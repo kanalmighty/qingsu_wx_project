@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.qs.bean.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="mobile" jdbcType="INTEGER" property="mobile" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, open_id, mobile, last_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from qs_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserName" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qs_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserByOpenId" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qs_user
+    where open_id = #{openId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from qs_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.bean.User" useGeneratedKeys="true" keyProperty="userId">
+    insert into qs_user (user_id, open_id, mobile, 
+      last_time)
+    values (#{userId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{mobile,jdbcType=INTEGER},
+      #{lastTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.bean.User">
+    insert into qs_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.bean.User">
+    update qs_user
+    <set>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.bean.User">
+    update qs_user
+    set open_id = #{openId,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=INTEGER},
+      last_time = #{lastTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -121,3 +121,9 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.qs.mapper
 # 默认值为 /*
+
+
+wechat:
+  authUrl: https://api.weixin.qq.com/sns/jscode2session
+  appId:  wxa63e799ea4dae996
+  secret: 905b465a8d892d1a0ed47324e90935d6

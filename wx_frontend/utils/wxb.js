@@ -1,17 +1,41 @@
 var api = require("apis.js");
 const Toast = require('../components/dist/toast/toast');
 
+
 //授权登陆登陆
 function login(callback) {
   wx.login({
     success: function (res) {
       if (res.code) {
-        Post(api.login, {
-          code: res.code
-        }, function (data2) {
-          wx.setStorageSync("userinfo", JSON.stringify(data2));
-          callback(data2);
-        });
+        Post(api.wechat_auth, {code: res.code}, function (data) {
+          if(data.openId!=null){
+            console.log(data)
+            wx.setStorageSync('userinfo',JSON.stringify(data));
+            console.log(wx.getStorageSync('userinfo'))
+            wx.switchTab({
+              url: '../order/order',
+            })
+            };
+          })
+        // wx.request({
+        //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + globalData.appid + '&secret=' + globalData.secret + '&js_code=' + res.code + '&grant_type=authorization_code',//获取openid的url，请求微信服务器
+        //   data: {},
+        //   header: {
+        //     'content-type': 'application/json'
+        //   },
+        //   success: function(res) {
+        //     debugger;
+        //     console.log("Openid为" + res.data.openid)
+        //     console.log("返回秘钥：" + res.data.session_key)//返回秘钥
+        //     globalData.openid = res.data.openid; //返回openid
+        //     //app.globalData.test="hello"
+        //     globalData.userInfo = e.detail.userInfo;
+            
+        //     wx.redirectTo({
+        //       url: '../index/index'
+        //     })
+        //   }
+        // })
       } else {
         wx.showToast({
           title: '拒绝了授权',
@@ -22,13 +46,17 @@ function login(callback) {
 }
 
 var globalData = {
-  'apiurl' :'http://localhost:8200'
+  apiurl :'http://localhost:8200',
+  appid: 'wxa63e799ea4dae996',
+  secret:'905b465a8d892d1a0ed47324e90935d6',
+  openid: null,
+  session_key: null
 }
 //检查用户是否是管理员
 function checkManage() {
   var info = wx.getStorageSync('userinfo');
   var userinfo = info ? JSON.parse(info) : {};
-  if (!userinfo.open_id) return false;
+  if (!userinfo.openId) return false;
   var time = Date.parse(new Date());
   //console.log(time / 1000 - userinfo.last_time );
   if (time / 1000 - userinfo.last_time > 86400) {
@@ -42,9 +70,10 @@ function checkManage() {
 function checkAuthLogin(type) {
   var info = wx.getStorageSync('userinfo');
   var userinfo = info ? JSON.parse(info) : {};
-  if (!userinfo.open_id) return false;
+  if (!userinfo.openId) return false;
   var time = Date.parse(new Date());
   //console.log(time / 1000 - userinfo.last_time );
+
   if (time / 1000 - userinfo.last_time > 86400) {
     return false;//大于一天了
   }
@@ -70,8 +99,8 @@ function checkLogin() {
 function getOpenId() {
   var info = wx.getStorageSync('userinfo');
   var userinfo = info ? JSON.parse(info) : {};
-  if (!userinfo.open_id) return 0;
-  return userinfo.open_id;
+  if (!userinfo.openId) return 0;
+  return userinfo.openId;
 }
 
 //定位当前的城市 会把当前的城市返回给callback
@@ -224,6 +253,9 @@ function PostMain(api, params, callback, types) {
     url: apiurl,
     data: params,
     method: types,
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded' // 默认值
+    },
     dataType: 'json',
     success: function (data) {
       //wx.hideLoading();
@@ -237,7 +269,7 @@ function PostMain(api, params, callback, types) {
           break
         default:
           Toast({
-            message: data.data.msg,
+            message: data.data.message,
             selector: '#zan-toast-test'
           });
           break;

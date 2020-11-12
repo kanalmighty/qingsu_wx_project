@@ -5,10 +5,20 @@ import org.springframework.http.ResponseEntity;
 public class WXResponseEntity<T> {
     private T data;
     int code;
+    String message;
 
-    public WXResponseEntity(T data, int code) {
+    public WXResponseEntity(T data, int code, String message) {
         this.data = data;
         this.code = code;
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

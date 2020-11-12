@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "广州",
+  "navigationBarTitleText": "房间列表",
   "usingComponents": {
     "zan-search": "/components/dist/search/index",
     "zan-row": "/components/dist/row/index",

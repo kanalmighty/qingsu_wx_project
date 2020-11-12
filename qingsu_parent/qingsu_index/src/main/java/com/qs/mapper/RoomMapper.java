@@ -10,4 +10,6 @@ public interface RoomMapper {
     int insertSelective(Room record);
 
     List<Room> selectRecommendRoomList();
+
+    Room selectRoomByRoomId(int roomId);
 }

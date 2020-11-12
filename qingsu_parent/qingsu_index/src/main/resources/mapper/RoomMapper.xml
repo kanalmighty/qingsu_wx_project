@@ -9,9 +9,17 @@
     <result column="is_recommended" jdbcType="INTEGER" property="isRecommended" />
     <result column="location" jdbcType="VARCHAR" property="location" />
     <result column="is_avaliable" jdbcType="INTEGER" property="isAvaliable" />
+    <result column="bed_count" jdbcType="INTEGER" property="bedCount" />
+    <result column="room_area" jdbcType="DOUBLE" property="roomArea" />
+    <result column="bath_room_count" jdbcType="INTEGER" property="bathRoomCount" />
+    <result column="balcony_count" jdbcType="INTEGER" property="balconyCount" />
+    <result column="bed_type" jdbcType="INTEGER" property="bedType" />
+    <result column="surrounding_introduction" jdbcType="INTEGER" property="surroundingIntroduction" />
+    <result column="introduction" jdbcType="INTEGER" property="introduction" />
   </resultMap>
   <sql id="Base_Column_List">
-    room_id, room_picture_url,title,is_recommended,price,location,is_avaliable
+    room_id, room_picture_url,title,is_recommended,price,location,is_avaliable,bed_count,room_area,bath_room_count,balcony_count,bed_type,surrounding_introduction,introduction,
+    room_address,room_name,longitude,latitude
   </sql>
   <select id="selectRecommendRoomList" resultMap="BaseResultMap">
     select
@@ -19,13 +27,29 @@
     from qs_room
     where is_recommended = 1
   </select>
+
+  <select id="selectRoomByRoomId" resultMap="BaseResultMap" parameterType="INTEGER">
+    select
+    <include refid="Base_Column_List" />
+    from qs_room
+    where room_id = #{roomId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAvalRoomList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qs_room
+    where is_avaliable = 1
+  </select>
   <insert id="insert" parameterType="com.qs.bean.Room">
     insert into qs_room (room_id, room_picture_url, price, 
       title, is_recommended, location, 
-      is_avaliable)
+      is_avaliable,bed_count,room_area,bath_room_count,balcony_count,bed_type,surrounding_introduction,introduction)
     values (#{roomId,jdbcType=INTEGER}, #{roomPictureUrl,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
       #{title,jdbcType=VARCHAR}, #{isRecommended,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, 
-      #{isAvaliable,jdbcType=INTEGER})
+      #{isAvaliable,jdbcType=INTEGER}, #{bedCount,jdbcType=INTEGER}, #{roomArea,jdbcType=DOUBLE}, #{bathRoomCount,jdbcType=INTEGER},
+      , #{balconyCount,jdbcType=INTEGER}, #{bedType,jdbcType=VARCHAR}, #{surroundingIntroduction,jdbcType=VARCHAR}
+      , #{introduction,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qs.bean.Room">
     insert into qs_room

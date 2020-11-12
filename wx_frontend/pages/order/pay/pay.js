@@ -73,7 +73,7 @@ Page({
   // 支付
   pay: function(){
     var that = this;
-    wxb.Post(wxb.api.pay,{order_id: that.data.order_id,openid:JSON.parse(wx.getStorageSync("userinfo")).open_id}, function(res){
+    wxb.Post(wxb.api.pay,{order_id: that.data.order_id,openid:JSON.parse(wx.getStorageSync("userinfo")).openId}, function(res){
       if(res){
         wx.requestPayment({
           timeStamp: res.order.timeStamp,
@@ -108,7 +108,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     if(options.order_id){
-      wxb.Post(wxb.api.order_detail, { order_id: options.order_id, openid: JSON.parse(wx.getStorageSync("userinfo")).open_id }, function (data) {
+      wxb.Post(wxb.api.order_detail, { order_id: options.order_id, openid: JSON.parse(wx.getStorageSync("userinfo")).openId }, function (data) {
         if (data.orderTime&&data.total_price){
           var time = utils.formatTime(new Date());
           var b = time.split(/[^0-9]/);

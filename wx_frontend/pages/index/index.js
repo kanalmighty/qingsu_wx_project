@@ -253,7 +253,6 @@ Page({
    getRecommendList: function () {
     var that = this;
     wxb.Post(wxb.api.index_recommend, {}, function (data) {
-      debugger;
       if(data.length > 0){
         that.setData({
           src: data[0],

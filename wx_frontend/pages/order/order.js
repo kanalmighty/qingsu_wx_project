@@ -75,7 +75,7 @@ Page({
   // 获取订单数据
   getOrder: function(val,page=1){
     var that = this;
-    wxb.Post(wxb.api.order_list, { type: val,openid: JSON.parse(wx.getStorageSync("userinfo")).open_id, current_page: page }, function (data) {
+    wxb.Post(wxb.api.order_list, { type: val,openid: JSON.parse(wx.getStorageSync("userinfo")).openId, current_page: page }, function (data) {
       that.setData({
         orderList: that.data.orderList.concat(data.data),
         total: data.total,
@@ -104,7 +104,7 @@ Page({
       success: function(res){
         if (res.confirm) {
           console.log(e.target.dataset.id);
-          wxb.Post(wxb.api.cancle, { order_id: e.target.dataset.id, openid: JSON.parse(wx.getStorageSync("userinfo")).open_id }, function (data) {
+          wxb.Post(wxb.api.cancle, { order_id: e.target.dataset.id, openid: JSON.parse(wx.getStorageSync("userinfo")).openId }, function (data) {
 
           });
         }

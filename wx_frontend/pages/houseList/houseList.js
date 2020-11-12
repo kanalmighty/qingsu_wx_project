@@ -104,12 +104,13 @@ Page({
   // 查询房屋列表数据
   getHouse: function(params){
     var that = this;
-    wxb.Post(wxb.api.minsu_index, params, function (data) {
+    wxb.Post(wxb.api.house_list, {}, function (data) {
       if (data != []) {
+        console.log(data)
         that.setData({
-          houseList: that.data.houseList.concat(data.data),
-          curr_page: data.current_page,
-          total: data.total,
+          houseList: data,
+          // curr_page: data.current_page,
+          // total: data.total,
           isHideLoadMore: true
         });
         Toast.clear();
@@ -120,7 +121,7 @@ Page({
         });
         Toast.clear();
       }
-    },"GET");
+    },"POST");
   },
   // 获取查询条件
   getQueryCon: function(){

@@ -1,9 +1,8 @@
 <!--pages/search/search.wxml-->
-
-<view class='search'>
   <!-- 搜索栏 -->
+<view class='search'>
   <view class='search-nav'>
-    <view class='search-nav-input'>
+    <!-- <view class='search-nav-input'>
       <navigator hover-class='none' url='search/search?title={{inputValue}}'>
         <zan-search
           keyword="{{ inputValue }}"
@@ -11,39 +10,39 @@
           disabled
         />
       </navigator>
-    </view>
+    </view> -->
     <view class='search-nav-head'>
       <zan-row>
-        <zan-col col="6" col-class="custom-zan-col">
+        <!-- <zan-col col="6" col-class="custom-zan-col">
           <navigator url='/common/calendar/calendar?bg_date={{bg_date}}&end_date={{end_date}}' hover-class='none'>
             <view class='search-nav-head-col sort font-middle'>{{starttime}}-{{endtime}}<view class='arrow'></view>
             </view>
           </navigator>
-        </zan-col>
-        <zan-col col="6" col-class="custom-zan-col">
+        </zan-col> -->
+        <!-- <zan-col col="6" col-class="custom-zan-col">
           <view class='search-nav-head-col sort font-middle' bindtap='toPlace'>{{place.title}}<view class='arrow'></view>
           </view>
-        </zan-col>
-        <zan-col col="6" col-class="custom-zan-col">
+        </zan-col> -->
+        <!-- <zan-col col="6" col-class="custom-zan-col">
           <view class='search-nav-head-col sort font-middle' bindtap='toSort'>{{sort[sort_value].name}}
             <view class='arrow'></view>
           </view>
-        </zan-col>
-        <zan-col col="6" col-class="custom-zan-col">
+        </zan-col> -->
+        <!-- <zan-col col="6" col-class="custom-zan-col">
           <navigator hover-class='none' url='filter/filter'>
             <view class='search-nav-head-col font-middle filter'>{{filter[0].title}}<view class='circle font-small' hidden='{{filter_num==""}}'>{{filter_num > 9 ? '9+' : filter_num}}</view><view class='arrow'></view>
             </view>
           </navigator>
-        </zan-col>
+        </zan-col> -->
       </zan-row>
     </view>
   </view>
   <!-- 房屋数据 -->
   <view class='search-detail' wx:if="{{houseList.length!=0}}">
     <block wx:for="{{houseList}}" wx:key>
-      <view bindtap='navigatorToHouseDetail' data-id="{{item.room_id}}" hover-class='btn-click-242'>
+      <view bindtap='navigatorToHouseDetail' data-id="{{item.roomId}}" hover-class='btn-click-242'>
         <view class='search-detail-img'>
-          <image class='search-detail-img-image' src='{{item.pictureURL}}'></image>
+          <image class='search-detail-img-image' src='{{item.roomPictureUrl}}'></image>
           <view class='search-detail-img-price'>
             <view class="price-top">
               <text class='font-small'>￥</text>
@@ -57,8 +56,8 @@
                   {{ item.price }}
                 </block>
                 <!-- 活动类型2: 甩卖 -->
-                <view class="price" wx:if="{{ item.activityType == 2 }}">今日<text>\n</text>甩卖</view>
-                <view class='angle' wx:if="{{ item.activityType == 2 }}"></view>
+                <!-- <view class="price" wx:if="{{ item.activityType == 2 }}">今日<text>\n</text>甩卖</view>
+                <view class='angle' wx:if="{{ item.activityType == 2 }}"></view> -->
               </view>
               <!--  -->
               <text class='origin-price font-middle' wx:if="{{ item.activityType }}">￥{{ item.price }}</text>
@@ -93,9 +92,9 @@
           </view>
       </view>
     </block>
-    <view class='noMore font-small' wx:if="{{ houseList.length == total }}">
+    <!-- <view class='noMore font-small' wx:if="{{ houseList.length == total }}">
       这里是最后一条啦~
-    </view>
+    </view> -->
   </view>
   <!-- 无房屋数据 -->
   <view class='noData font-middle' wx:else>

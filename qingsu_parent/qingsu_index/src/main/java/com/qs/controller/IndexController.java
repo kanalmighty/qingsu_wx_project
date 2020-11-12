@@ -34,7 +34,7 @@ public class IndexController {
     @ApiOperation("获取首页推荐列表")
     public WXResponseEntity getRecommend(){
         List<Room> roomList = indexService.getRecommendRooms();
-        return new WXResponseEntity<List<Room>>(roomList, 200);
+        return new WXResponseEntity<List<Room>>(roomList, 200,"success");
     }
 
     @RequestMapping(value = "/banner",method = RequestMethod.POST)
@@ -45,7 +45,7 @@ public class IndexController {
         for (Banner banner : bannerEntityList) {
             bannerList.add(banner.getBannerUrl());
         }
-        return new WXResponseEntity<List<String>>(bannerList, 200);
+        return new WXResponseEntity<List<String>>(bannerList, 200, "success");
     }
 
 }

@@ -57,7 +57,7 @@ Page({
         context: '密码开锁，自助入住和退房，无需等待房东'
       }
     ],
-    facilitiesCount: 0,
+    // facilitiesCount: 0,
     price: '',
     days: 1
   },
@@ -74,16 +74,17 @@ Page({
       list = JSON.parse(wx.getStorageSync('index_dataList'));
     }
     //获取房屋详情数据
-    wxb.Post(wxb.api.house_detail, {room_id: room_id}, function (data) {
+    wxb.Post(wxb.api.house_detail, {id: room_id}, function (data) {
       var count = 0;
+      alreadydate = data.bookedDateList
       var isWeek = new Date().getDay() == 0 || new Date().getDay() == 6 ? true : false;
-      for(let i = 0; i < data.facilities.length; i++){
-        count += data.facilities[i].child.length;
-      }
+      // for(let i = 0; i < data.facilities.length; i++){
+      //   count += data.facilities[i].child.length;
+      // }
       that.setData({
         detailList: data,
-        facilitiesCount: count,
-        price: isWeek ? data.sale_week_price : data.sale_worke_price
+        // facilitiesCount: count,
+        price: data.price
       });
       Toast.clear();
     });
@@ -119,6 +120,7 @@ Page({
         }
       }
     }
+
     if (list.level == 0) {
       level = '豪华';
     }
@@ -211,6 +213,7 @@ Page({
       for (let i = 0; i < monthdate.length; i++) {
         for (let j = 0; j < monthdate[i].day.length; j++) {
           for (let k = 0; k < alreadydate.length; k++) {
+            //day1格式为为2020-01-01
             if (monthdate[i].day[j].day1 == alreadydate[k]) {
               monthdate[i].day[j]['already'] = true;
             }
@@ -231,7 +234,7 @@ Page({
   //调用手机呼叫号码
   markerUpPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.detailList.HomeownerPhone
+      phoneNumber: '18069848866'
     });
   },
   //展开收起切换（view）
@@ -264,13 +267,13 @@ Page({
   //打开地图显示位置信息
   navigatorToLocation(e){
     var that = this;
-    console.log('lat', parseFloat(e.currentTarget.dataset.lat), '2', e.currentTarget.dataset.lat);
+    console.log('lat', parseFloat(e.currentTarget.dataset.longitude), '2', e.currentTarget.dataset.latitude);
     wx.openLocation({
       latitude: parseFloat(e.currentTarget.dataset.lat),
       longitude: parseFloat(e.currentTarget.dataset.lng),
-      name: that.data.detailList.introduction.minsu_name, 
-      address: that.data.detailList.unitAddress,
-      scale: 18
+      name: that.data.roomName, 
+      address: that.data.address,
+      scale: 10
     });
   },
   //跳转到评论信息
